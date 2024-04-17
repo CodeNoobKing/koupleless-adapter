@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <revision>0.0.1</revision>
+        <revision>0.0.1-SNAPSHOT</revision>
         <koupleless.runime.version>1.1.0</koupleless.runime.version>
         <sofa.ark.version>2.2.9-SNAPSHOT</sofa.ark.version>
         <project.encoding>UTF-8</project.encoding>
@@ -29,6 +29,11 @@
         <guava.version>32.1.3-jre</guava.version>
         <fastjson.version>1.2.83</fastjson.version>
         <hessian.version>4.0.66</hessian.version>
+
+
+        <!-- the following property should be  -->
+        <spring.boot.version>SHOULD_OVERRIDE</spring.boot.version>
+        <java.version>SHOULD_OVERRIDE</java.version>
     </properties>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -71,7 +76,11 @@
     </scm>
 
     <modules>
-        <module>koupleless-adapter-jdk8</module>
+        <module>koupleless-adapter-log4j-spring-starter-2.1</module>
+        <module>koupleless-adapter-log4j-spring-starter-2.7</module>
+        <module>koupleless-adapter-dubbo-2.6</module>
+        <module>koupleless-adapter-dubbo-2.7</module>
+        <module>koupleless-adapter-apollo-1.6</module>
     </modules>
 
     <dependencyManagement>
@@ -86,8 +95,11 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.12.0</version>
             </dependency>
-
-
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>4.5.1</version>
+            </dependency>
             <dependency>
                 <groupId>com.alipay.sofa.koupleless</groupId>
                 <artifactId>arklet-core</artifactId>
@@ -422,6 +434,23 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin}</version>
+                <configuration>
+                    <encoding>${project.encoding}</encoding>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
+
         </plugins>
     </build>
 

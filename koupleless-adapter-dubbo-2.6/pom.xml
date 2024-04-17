@@ -5,56 +5,29 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.alipay.sofa.koupleless</groupId>
-        <artifactId>koupleless-adapter-jdk8</artifactId>
+        <artifactId>koupleless-adapter</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
-    <artifactId>koupleless-adapter-apollo</artifactId>
+    <artifactId>koupleless-adapter-dubbo-2.6</artifactId>
     <version>${revision}</version>
+
+    <properties>
+        <spring.boot.version>2.7.15</spring.boot.version>
+        <java.version>1.8</java.version>
+    </properties>
+
     <dependencies>
         <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
-            <version>1.6.0</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.6.12</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>sofa-ark-spi</artifactId>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alipay.sofa.koupleless</groupId>
-            <artifactId>koupleless-common</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofa-ark-container</artifactId>
-            <version>${sofa.ark.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -73,11 +46,19 @@
 
                         <configuration>
                             <activator>
-                                com.alipay.sofa.koupleless.adapter.ApolloAdapterActivator
+                                com.alipay.sofa.koupleless.adapter.Dubbo26AdapterActivator
                             </activator>
+                            <exported>
+                                <!--                                <mode>override</mode>-->
+                                <packages>
+                                    <package>com.alibaba.dubbo.common</package>
+                                    <package>com.alibaba.dubbo.config.spring.extension</package>
+                                    <package>com.alibaba.dubbo.rpc.protocol.dubbo</package>
+                                </packages>
+                            </exported>
                             <excludes>
                                 <exclude>*:*:*</exclude>
-                                <exclude>com.alipay.sofa.koupleless:koupleless-adapter-apollo
+                                <exclude>com.alipay.sofa.koupleless:koupleless-adapter-dubbo2.6
                                 </exclude>
                             </excludes>
                         </configuration>
@@ -86,4 +67,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
