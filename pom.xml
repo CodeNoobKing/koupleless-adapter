@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <revision>0.0.1-SNAPSHOT</revision>
+        <revision>1.2.0-SNAPSHOT</revision>
         <koupleless.runime.version>1.1.0</koupleless.runime.version>
         <sofa.ark.version>2.2.9-SNAPSHOT</sofa.ark.version>
         <project.encoding>UTF-8</project.encoding>
